@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+@theme {
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-rajdhani: 'Rajdhani', sans-serif;
+  --font-space: 'Space Grotesk', sans-serif;
+  --color-cyber-blue: #00f0ff;
+  --color-cyber-pink: #ff00e5;
+  --color-cyber-purple: #8b5cf6;
+  --color-cyber-green: #39ff14;
+  --color-cyber-orange: #ff6b00;
+  --color-dark-bg: #030014;
+  --color-dark-surface: #0a0a2e;
+  --color-dark-card: #111155;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #00f0ff #030014;
+}
+
+body {
+  background: #030014;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030014;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00f0ff, #ff00e5);
+  border-radius: 3px;
+}
+
+/* Glitch text effect */
+@keyframes glitch {
+  0% { text-shadow: 2px 0 #ff00e5, -2px 0 #00f0ff; }
+  25% { text-shadow: -2px -1px #ff00e5, 2px 1px #00f0ff; }
+  50% { text-shadow: 1px 2px #ff00e5, -1px -2px #00f0ff; }
+  75% { text-shadow: -1px 1px #ff00e5, 1px -1px #00f0ff; }
+  100% { text-shadow: 2px 0 #ff00e5, -2px 0 #00f0ff; }
+}
+
+.glitch-text {
+  animation: glitch 0.3s infinite alternate;
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), 0 0 60px rgba(0, 240, 255, 0.3); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Scan line overlay */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scanline-overlay::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, transparent, rgba(0, 240, 255, 0.15), transparent);
+  z-index: 9999;
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Grid background */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Neon border */
+@keyframes neonBorder {
+  0%, 100% { border-color: #00f0ff; box-shadow: 0 0 10px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.1); }
+  50% { border-color: #ff00e5; box-shadow: 0 0 10px rgba(255, 0, 229, 0.5), inset 0 0 10px rgba(255, 0, 229, 0.1); }
+}
+
+.neon-border {
+  border: 1px solid #00f0ff;
+  animation: neonBorder 3s ease-in-out infinite;
+}
+
+/* Typewriter */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: #00f0ff;
+}
+
+/* Loading bar */
+@keyframes loadingBar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.loading-bar {
+  animation: loadingBar 2s ease-out forwards;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #00f0ff 0%, #ff00e5 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Particle trail */
+@keyframes particleFloat {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100px) scale(0); opacity: 0; }
+}
+
+/* Section reveal */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(80px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-up {
+  animation: revealUp 0.8s ease-out forwards;
+}
+
+/* HUD corners */
+.hud-corners {
+  position: relative;
+}
+.hud-corners::before,
+.hud-corners::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: #00f0ff;
+}
+.hud-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.hud-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-left: none;
+  border-right: 2px solid;
+}
+
+/* Rotating ring */
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotate-slow {
+  animation: rotateRing 20s linear infinite;
+}
+
+.rotate-reverse {
+  animation: rotateRing 15s linear infinite reverse;
+}
+
+/* Smooth section transitions */
+.section-transition {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-transition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Canvas container */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.canvas-container.interactive {
+  pointer-events: auto;
+}
+
+/* Hexagon shape */
+.hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Smooth scroll on all elements */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: white;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 1px solid #00f0ff;
+  outline-offset: 2px;
+}
+
+/* Custom cursor on desktop - hide default */
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+  a, button, input, select, textarea {
+    cursor: none;
+  }
+}
+
+/* Perspective container for 3D cards */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
